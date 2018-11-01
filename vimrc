@@ -29,7 +29,6 @@ let g:rehash256 = 1
 syntax on
 colorscheme onedark
 
-
 let g:lightline = {
 	\ 'colorscheme': 'wombat',
       \ 'active': {
