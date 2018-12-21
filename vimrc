@@ -15,11 +15,20 @@ Plug 'junegunn/fzf.vim'
 Plug 'itchyny/lightline.vim'
 Plug 'joshdick/onedark.vim'
 Plug 'fatih/molokai'
-" Deoplete Plugins
-"Plug 'Shougo/deoplete.nvim'
-"Plug 'roxma/nvim-yarp'
-"Plug 'roxma/vim-hug-neovim-rpc'
+
+"Deoplete Plugins
+Plug 'Shougo/deoplete.nvim'
+Plug 'roxma/nvim-yarp'
+Plug 'roxma/vim-hug-neovim-rpc'
 Plug 'fatih/vim-go'
+
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
+    \ }
+
 call plug#end()
 
 "so ~/.vim/plugins.vim
@@ -28,6 +37,13 @@ call plug#end()
 let g:rehash256 = 1
 syntax on
 colorscheme onedark
+
+let g:LanguageClient_serverCommands = {
+    \ 'go': ['go-langserver']
+    \ }
+
+let g:SOURCEGRAPH_GOPATH = '/Users/ajith/go'
+let g:SOURCEGRAPH_GOBIN = '/Users/ajith/go/bin'
 
 let g:lightline = {
 	\ 'colorscheme': 'wombat',
@@ -53,14 +69,17 @@ hi MatchParen cterm=none ctermbg=Gray ctermfg=White
 syntax enable 
 filetype plugin indent on
 
+let g:go_highlight_fields = 1
+let g:go_highlight_function_calls = 1
 
-"let g:go_highlight_fields = 1
-"let g:go_highlight_function_calls = 1
-"let g:deoplete#enable_at_startup = 1
+"deoplete 
+let g:deoplete#sources#jedi#python_path = 'python3'
+let g:deoplete#enable_at_startup = 1
+
 let mapleader = ","
 let g:go_fmt_command = "goimports"
 let g:go_metalinter_autosave = 1
-let g:go_metalinter_deadline = "5s"
+let g:go_metalinter_deadline = "10s"
 "let g:go_auto_sameids = 1
 let g:go_decls_includes = "func,type"
 let g:neocomplcache_enable_at_startup = 1 
@@ -139,5 +158,30 @@ if (empty($TMUX))
   endif
 endif
 
-
-
+let g:tagbar_type_go = {
+	\ 'ctagstype' : 'go',
+	\ 'kinds'     : [
+		\ 'p:package',
+		\ 'i:imports:1',
+		\ 'c:constants',
+		\ 'v:variables',
+		\ 't:types',
+		\ 'n:interfaces',
+		\ 'w:fields',
+		\ 'e:embedded',
+		\ 'm:methods',
+		\ 'r:constructor',
+		\ 'f:functions'
+	\ ],
+	\ 'sro' : '.',
+	\ 'kind2scope' : {
+		\ 't' : 'ctype',
+		\ 'n' : 'ntype'
+	\ },
+	\ 'scope2kind' : {
+		\ 'ctype' : 't',
+		\ 'ntype' : 'n'
+	\ },
+	\ 'ctagsbin'  : 'gotags',
+	\ 'ctagsargs' : '-sort -silent'
+\ }
