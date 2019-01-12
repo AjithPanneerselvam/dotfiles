@@ -15,7 +15,7 @@ set t_Co=256 " Ignored by nvim
 " hi NonText ctermfg=16 guifg=#4a4a59
 " hi SpecialKey ctermfg=16 guifg=#4a4a59
 
-set pyxversion=3
+" set pyxversion=3
 let g:python_3_host_prog= "/usr/local/bin/python3.7"
 
 set cursorline
@@ -60,6 +60,11 @@ endif
 
 if !has('nvim')
 	set term=xterm-256color
+endif
+
+" Enable deoplete on startup
+if has('nvim')
+    let g:deoplete#enable_at_startup = 1
 endif
 
 if has('nvim')

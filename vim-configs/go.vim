@@ -15,6 +15,9 @@ let g:go_info_mode = 'gocode'
 
 "let g:go_auto_sameids = 1 
 
+" deoplete-go setup
+let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const']
+
 let g:tagbar_type_go = {
 	\ 'ctagstype' : 'go',
 	\ 'kinds'     : [

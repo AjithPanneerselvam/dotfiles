@@ -3,15 +3,15 @@ filetype off                  " required
 
 if filereadable(expand("~/.vimrc.experiment")) " try
   source ~/.vimrc.experiment
-elseif filereadable(expand("~/vimam/plugins.vim")) " Usual
-  source ~/vimam/plugins.vim
-  source ~/vimam/syntax.vim
-  source ~/vimam/settings.vim
-  source ~/vimam/filetypes.vim
-  source ~/vimam/functions.vim
-  source ~/vimam/abbreviations.vim
-  source ~/vimam/mappings.vim
-  source ~/vimam/go.vim
+elseif filereadable(expand("~/vim-configs/plugins.vim")) " Usual
+  source ~/vim-configs/plugins.vim
+  source ~/vim-configs/syntax.vim
+  source ~/vim-configs/settings.vim
+  source ~/vim-configs/filetypes.vim
+  source ~/vim-configs/functions.vim
+  source ~/vim-configs/abbreviations.vim
+  source ~/vim-configs/mappings.vim
+  source ~/vim-configs/go.vim
 endif
 
 
