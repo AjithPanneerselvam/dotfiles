@@ -8,18 +8,10 @@ Plug 'tpope/vim-rhubarb' " :Gbrowse, hub
 Plug 'airblade/vim-gitgutter' " +/-/~ signs in the gutter
 Plug 'jreybert/vimagit' " Magit in vim
 Plug 'gregsexton/gitv', {'on': ['Gitv']} " :Gitv is a bit like tig
-Plug 'junkblocker/patchreview-vim' " Dependency for vim-codereview
-Plug 'codegram/vim-codereview' " Use :CodeReview https://github.com/myorganization/myrepo/pulls/1328
-
-Plug 'vimwiki/vimwiki'
 Plug 'idanarye/vim-merginal' " view/switch branches with :Merginal
-Plug 'will133/vim-dirdiff' " diff
-Plug 'junegunn/vim-peekaboo' " show buffers
-Plug 'gioele/vim-autoswap' " deal with swap files
 
+" Themes and appearance 
 Plug 'joshdick/onedark.vim' " one-dark color scheme 
-
-Plug 'joereynolds/place.vim' " insertions with ga (non-cursor)
 
 """ Completion
 Plug 'Shougo/deoplete.nvim' , { 'do': ':UpdateRemotePlugins' }
@@ -28,7 +20,6 @@ Plug 'roxma/vim-hug-neovim-rpc'
 """ Go
 Plug 'fatih/vim-go', { 'tag': '*' } " , 'do': ':GoUpdateBinaries' }
 Plug 'godoctor/godoctor.vim'
-"Plug 'nsf/gocode', {'rtp': 'nvim/'}
 Plug 'buoto/gotests-vim'
 Plug 'zchee/deoplete-go', {'build': {'unix': 'make'}}
 Plug 'laher/regopher.vim'
@@ -38,43 +29,19 @@ Plug 'FooSoft/vim-argwrap' " Wrap a paremeter list accross multiple lines
 Plug 'majutsushi/tagbar' " 'Outline' of current file
 "Plug 'lvht/tagbar-markdown'
 
-Plug 'w0rp/ale' "syntax & linting
+""" Syntax & linting 
+Plug 'w0rp/ale' 
 
 Plug 'autozimu/LanguageClient-neovim', {
     \ 'branch': 'next',
     \ 'do': 'bash install.sh',
     \ }
 
-""" Other languages
-"Plug 'sheerun/vim-polyglot'
+""" Rust 
 Plug 'rust-lang/rust.vim'
-
-Plug 'rstacruz/sparkup', {'rtp': 'vim/'}  """ condensed html
-
-Plug 'burnettk/vim-angular'
-Plug 'ternjs/tern_for_vim'
-Plug 'othree/javascript-libraries-syntax.vim'
-Plug 'prettier/vim-prettier'
-Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
-Plug 'flowtype/vim-flow'
-"Plug 'wokalski/autocomplete-flow'
-"Plug 'steelsojka/deoplete-flow'
-"Plug 'carlitux/deoplete-flow'
-
-Plug 'mzlogin/vim-markdown-toc'
-Plug 'jkramer/vim-checkbox'
-
-Plug 'kyuhi/vim-emoji-complete'
-Plug 'christianrondeau/vim-base64'
-
-""" org-mode-ish
-Plug 'dhruvasagar/vim-dotoo'
-"Plug 'blindFS/vim-taskwarrior'
 
 """ tmux
 Plug 'christoomey/vim-tmux-navigator'
-" Plug 'benmills/vimux'
-" Plug 'benmills/vimux-golang'
 Plug 'christoomey/vim-tmux-runner'
 
 """ tpope
@@ -97,7 +64,7 @@ Plug 'ryanoasis/vim-devicons' " icons for NERDTree etc
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'pelodelfuego/vim-swoop' " replace across files typa thing
-" Plug 'vim-ctrlspace/vim-ctrlspace' "not really using this megabeast
+Plug 'vim-ctrlspace/vim-ctrlspace' "not really using this megabeast
 Plug 'sunaku/vim-shortcut' "searchable key mappings
 Plug 'haya14busa/incsearch.vim'
 
@@ -108,7 +75,6 @@ Plug 'vim-scripts/argtextobj.vim'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'bkad/CamelCaseMotion'
 Plug 'glts/vim-textobj-comment'
-"Plug 'jiangmiao/auto-pairs'
 Plug 'jeetsukumaran/vim-indentwise'
 Plug 'AndrewRadev/splitjoin.vim'
 
@@ -116,44 +82,9 @@ Plug 'AndrewRadev/splitjoin.vim'
 Plug 'szw/vim-dict'
 
 """ Appearance and layout
-Plug 'itchyny/lightline.vim' " status across bottom
+Plug 'vim-airline/vim-airline'
 Plug 'itchyny/vim-cursorword' " underline word under cursor
 
-""" Apps
-Plug 'diepm/vim-rest-console' " Rest console
-Plug 'itchyny/calendar.vim' " calendar
-Plug 'thanthese/Tortoise-Typing' " typing
-Plug 'chemzqm/todoapp.vim' " todo
-" Plug 'jacobsimpson/nvim-example-python-plugin' " ooh, lets try
-
-syntax on 
-colorscheme onedark 
-
-"Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
-"If you're using tmux version 2.2 or later, you can remove the outermost $TMUX check and use tmux's 24-bit color support
-"(see < http://sunaku.github.io/tmux-24bit-color.html#usage > for more information.)
-if (empty($TMUX))
-  if (has("nvim"))
-    "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
-    let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-  endif
-  "For Neovim > 0.1.5 and Vim > patch 7.4.1799 < https://github.com/vim/vim/commit/61be73bb0f965a895bfb064ea3e55476ac175162 >
-  "Based on Vim patch 7.4.1770 (`guicolors` option) < https://github.com/vim/vim/commit/8a633e3427b47286869aa4b96f2bfc1fe65b25cd >
-  " < https://github.com/neovim/neovim/wiki/Following-HEAD#20160511 >
-  if (has("termguicolors"))
-    set termguicolors
-  endif
-endif
-
-let g:acp_enableAtStartup = 0
-
-""" Completion
-if !has('nvim')
-	"Plug 'Shougo/neocomplete.vim'
-	" Plug 'maralla/completor.vim' " Ugh not working for go. Disabling at startup for now and switching back to nvim
-
-	"Plug 'ensime/ensime-vim'
-endif
 if has('nvim')
 	Plug 'jodosha/vim-godebug'
 
@@ -165,27 +96,4 @@ endif
 """ snippets
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
-" You will also need the following for function argument completion:
-" Plug 'Shougo/neosnippet'
-" Plug 'Shougo/neosnippet-snippets'
-
-" buggy? jumpy text
-" Plug 'osyo-manga/vim-over' " show preview of commands
-
-" All of your Plugs must be added before the following line
 call plug#end()
-
-"set runtimepath^=~/d/regopher.vim
-
-let g:NERDTreeIndicatorMapCustom = {
-    \ "Modified"  : "✹",
-    \ "Staged"    : "✚",
-    \ "Untracked" : "✭",
-    \ "Renamed"   : "➜",
-    \ "Unmerged"  : "═",
-    \ "Deleted"   : "✖",
-    \ "Dirty"     : "✗",
-    \ "Clean"     : "✔︎",
-    \ 'Ignored'   : '☒',
-    \ "Unknown"   : "?"
-    \ }

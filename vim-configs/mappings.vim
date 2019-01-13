@@ -1,4 +1,3 @@
-
 " Leader
 let mapleader=";"
 let maplocalleader=","
@@ -60,7 +59,6 @@ Shortcut git-diff nmap <Leader>gd :Gdiff<CR>
 Shortcut git-browse nmap <Leader>gbr :Gbrowse<CR>
 Shortcut git-blame nmap <Leader>gbl :Gblame<CR>
 
-
 Shortcut bunload nmap <Leader>u :bun<CR>
 
 Shortcut escape-jk imap jk <Esc>
@@ -76,31 +74,8 @@ let g:UltiSnipsExpandTrigger="<Leader>'"
 let g:UltiSnipsJumpForwardTrigger="<Leader>'"
 let g:UltiSnipsJumpBackwardTrigger="<Leader>\""
 
-" expert mode
-"noremap <Up> <nop>
-"noremap <Down> <nop>
-"noremap <Left> <nop>
-"noremap <Right> <nop>
-
-" jump to next/prev vim-go error:
-" nnoremap <C-j> :cn<CR>
-" nnoremap <C-k> :cp<CR>
-
-"au FileType dotoo inoremap <CR> <CR><C-R>=expand("%:t:r")
-" au FileType dotoo nnoremap t ji<CR>*
-" au FileType dotoo iabbrev ** • 
-"
-au FileType dotoo Shortcut new headline nnoremap <LocalLeader>b i*<Space>
-
-" disabled this line because it broke popups. Also I have no idea what it did
-"nmap <CR> o<Esc>
-
 au FileType rust nnoremap <LocalLeader>rf :%!rustfmt<CR>
 au FileType rust nnoremap <LocalLeader>rr :CargoRun<CR>
-
-
-au FileType markdown nmap <LocalLeader>t i## <C-R>=strftime("%Y-%m-%d")<CR><CR> * 
-au FileType markdown nnoremap <LocalLeader>m :call TodoMoveToHeading()<CR>
 
 " avoids 'delete replaces default buffer' because 0 buffer contains 'last yank'
 Shortcut safepaste 

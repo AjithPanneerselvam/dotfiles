@@ -6,18 +6,6 @@ endif
 filetype plugin indent on    " required
 set t_Co=256 " Ignored by nvim
 
-" set isprint=1-255
-
-" set list " show whitespace chars
-" set listchars is useful in combination with :set list (showing whitespace chars)
-" set listchars=eol:↲,tab:»\ ,trail:~,extends:⟩,precedes:⟨,space:·
-" set showbreak=↪
-" hi NonText ctermfg=16 guifg=#4a4a59
-" hi SpecialKey ctermfg=16 guifg=#4a4a59
-
-" set pyxversion=3
-let g:python_3_host_prog= "/usr/local/bin/python3.7"
-
 set cursorline
 set whichwrap+=<,>,h,l,[,] " right-arrow goes to next line
 set autochdir " change dir to current file's dir
@@ -50,14 +38,6 @@ if exists('g:gui_oni')
     set noswapfile
 endif
 
-if exists('g:gui_oni')
-"   set smartcase
-"   set noshowmode
-"   set noruler
-"    set laststatus=0
-"    set noshowcmd
-endif
-
 if !has('nvim')
 	set term=xterm-256color
 endif
@@ -67,26 +47,43 @@ if has('nvim')
     let g:deoplete#enable_at_startup = 1
 endif
 
+"vim-airline settings 
+let g:airline_detect_paste=1
+
+"ale settings
+let g:airline#extensions#ale#enabled = 1
+let g:ale_lint_on_enter = 1
+let g:ale_linters = {'go': ['gobuild', 'go vet', 'golint', 'gofmt'], "python": ['flake8', 'pylint']}
+let b:ale_fixers = ['autopep8']
+let g:ale_set_loclist = 1
+let g:ale_set_quickfix = 1
+let g:ale_list_window_size = 2
+"let g:ale_fix_on_save = 1
+let g:ale_open_list = 1
+let g:ale_keep_list_window_open = 1
+
+" Remap ,m to make and open error window if there are any errors. If there
+" weren't any errors, the current window is maximized.
+map <silent> ,m :mak<CR><CR>:cw<CR>:call MaximizeIfNotQuickfix()<CR>
+
+" Maximizes the current window if it is not the quickfix window.
+function MaximizeIfNotQuickfix()
+  if (getbufvar(winbufnr(winnr()), "&buftype") != "quickfix")
+    wincmd _
+  endif
+endfunction
+
 if has('nvim')
 	autocmd BufEnter * if &buftype == "terminal" | startinsert | endif
 	tnoremap <Esc> <C-\><C-n>
 	command Tsplit split term://$SHELL
 	command Tvsplit vsplit term://$SHELL
 	command Ttabedit tabedit term://$SHELL
-	"let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-	"let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
-	"let &t_AB="\e[48;5;%dm"
-	"let &t_AF="\e[38;5;%dm""	
-	" This is for vim-tmux-navigator in OSX
 	nnoremap <silent> <BS> :TmuxNavigateLeft<cr>
 endif
 
 set termencoding=utf-8
-"set guifont=Source\ Code\ Pro\ ExtraLight:h18
-"set guifont=Ubuntu\ Mono\ derivative\ Powerline:h18
 set guifont=GoMono\ Nerd\ Font\ Book:h18
-"set completeopt-=preview
-
 
 if !has('nvim')
 	" old completion stuff
@@ -105,11 +102,7 @@ endif
 set number
 set hlsearch
 set incsearch
-"set gdefault " treat :s// as :s//g (and vice versa)
-"set smartcase " treat all-lower as case-insensitive while searching
 set title
-
-"set clipboard^=unnamed
 set clipboard+=unnamedplus
 
 " Put plugins and dictionaries in this dir (also on Windows)
@@ -127,60 +120,32 @@ endif
 
 set backspace=indent,eol,start
 
-
 " restore cursor _except_ for commit messages
 autocmd BufReadPost * if @% !~# '\.git[\/\\]COMMIT_EDITMSG$' && line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif 
-
-
-" plugin-specific settings
-
 
 let g:place_single_character_mode = 0
 let g:calendar_google_calendar = 1
 let g:calendar_google_task = 1
 
-let g:lightline = {
-      \ 'colorscheme': 'wombat', 
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
-      \ },     
-      \ 'separator': { 'left': '', 'right': '' },
-      \ 'subseparator': { 'left': '', 'right': '' },
-      \ 'component_function': {
-      \   'gitbranch': 'fugitive#head'
-      \ },
-      \ }
 
-" ^set autowrite
-
+let g:airline_theme='onedark'
 let g:WMGraphviz_output = "svg"
 let g:WMGraphviz_viewer = "google-chrome"
-
 
 """ incsearch
 map /  <Plug>(incsearch-forward)
 map ?  <Plug>(incsearch-backward)
 map g/ <Plug>(incsearch-stay)
 
-
-
 if !exists('g:gui_oni') && !exists('g:GuiLoaded')
     " Start NERDTree when no files specified
     autocmd StdinReadPre * let s:std_in=1
-"    autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-    " autocmd BufEnter * NERDTreeMirror
-"    autocmd VimEnter * wincmd w
 endif
 
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
 "let g:UltiSnipsSnippetsDir='mysnippets'
 "let g:UltiSnipsSnippetDirectories=['~/.vimsnippets']
-
-let g:ale_lint_on_text_changed = 0
-let g:ale_lint_on_save = 1
-let g:ale_fixers = {'javascript': ['prettier', 'eslint', 'flow']}
 
 " ctrlp
 let g:CtrlSpaceDefaultMappingKey = "<C-Space> "
@@ -218,9 +183,7 @@ let g:LanguageClient_serverCommands = {
 
 """ vim-checkbox plugin
 let g:checkbox_states = [' ', 'X']
-
 let vim_markdown_preview_github=1
-
 let g:deoplete#enable_at_startup = 1
 set completeopt+=noinsert
 set completeopt-=preview
