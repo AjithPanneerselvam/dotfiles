@@ -2,95 +2,57 @@
 let mapleader=";"
 let maplocalleader=","
 
-" shortcut plugin needs to be included for some reason. Weird!
-source ~/.vim/plugged/vim-shortcut/plugin/shortcut.vim
+let g:fzf_action = {
+  \ 'ctrl-t': 'tab split',
+  \ 'ctrl-x': 'split',
+  \ 'ctrl-v': 'vsplit' }
 
-if exists('g:loaded_shortcut')
-  Shortcut show shortcut menu and run chosen shortcut noremap <silent> <Leader><Leader> :Shortcuts<Return>
-"  Shortcut fallback to shortcut menu on partial entry noremap <silent> <Leader> :Shortcuts<Return>
-"  Shortcut fallback to shortcut menu on partial entry noremap <silent> <LocalLeader> :Shortcuts<Return>
+let g:fzf_layout = { 'down': '~40%'}
+
+""" fzf key mappings
+nnoremap <silent> ff :Files <CR> 
+nnoremap <silent> fg :GFiles <CR>
+nnoremap <silent> fgs :GFiles? <CR> 
+nnoremap <silent> fl :Lines <CR>
+nnoremap <silent> fm :Marks <CR> 
+nnoremap <silent> flp :Locate \ <CR>
+nnoremap <silent> fag :Ag <CR>
+nnoremap <silent> fgc :Commits <CR> 
+nnoremap <silent> fcm :Commands <CR> 
+nnoremap <silent> fmp :Maps <CR> 
+
+""" incsearch
+map /  <Plug>(incsearch-forward)
+map ?  <Plug>(incsearch-backward)
+map g/ <Plug>(incsearch-stay)
+
+""" NERDTree
+nnoremap <silent> nt :NERDTree <CR>
+
+""" Language server
+nnoremap <silent> ls :call LanguageClient_contextMenu()<CR>
+nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
+nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
+nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
+
+if has('nvim')
+	autocmd BufEnter * if &buftype == "terminal" | startinsert | endif
+	tnoremap <Esc> <C-\><C-n>
+	command Tsplit split term://$SHELL
+	command Tvsplit vsplit term://$SHELL
+	command Ttabedit tabedit term://$SHELL
+	nnoremap <silent> <BS> :TmuxNavigateLeft<cr>
 endif
 
-Shortcut CtrlP nnoremap <Leader>p :CtrlP<CR>
-Shortcut CtrlPBuffer nnoremap <Leader>ob :CtrlPBuffer
-Shortcut CtrlSpace nnoremap <Leader><Space> :CtrlSpace<CR>
-Shortcut TagbarToggle nnoremap <Leader>. :TagbarToggle<CR>
+" Remap ,m to make and open error window if there are any errors. If there weren't any errors, the current window is maximized.
+map <silent> ,m :mak<CR><CR>:cw<CR>:call MaximizeIfNotQuickfix()<CR>
 
-" deletes into an empty buffer
-nnoremap <Leader>d "_d
-
-command! -bang -nargs=* GGrep
-  \ call fzf#vim#grep(
-  \   'git grep --line-number '.shellescape(<q-args>), 0,
-  \   fzf#vim#with_preview({ 'dir': systemlist('git rev-parse --show-toplevel')[0] }), <bang>0)
-
-Shortcut Find in project nnoremap <Leader>e :GGrep <c-r><c-w><CR>
-Shortcut NERDTreeToggle nnoremap <Leader>T :NERDTreeToggle<CR>
-Shortcut NERDTreeFind nnoremap <Leader>t :NERDTreeFind<CR>
-Shortcut NERDTreeFind nnoremap <Leader>t :NERDTreeFind<CR>
-
-func IsNERDTreeOpen()
-    return exists('t:NERDTreeBufName') && bufwinnr(t:NERDTreeBufName) != -1
-endfunc
-
-func NERDToggleOrFind()
-	if IsNERDTreeOpen()
-		:NERDTreeToggle<CR>
-	else 
-		:NERDTreeFind<CR>
-	endif
-endfunc
-
-Shortcut Filename inoremap <Leader>fn <c-r>=expand("%:t")<cr>
-
-let g:swoopUseDefaultKeyMap = 0
-Shortcut swoop 
- \ nmap <Leader>s :call Swoop()<CR>
-Shortcut swoop selection 
- \ vmap <Leader>s :call SwoopSelection()<CR>
-Shortcut swoop multi
- \ nmap <Leader>ms :call SwoopMulti()<CR>
-Shortcut swoop multi selection 
- \ vmap <Leader>ms :call SwoopMultiSelection()<CR>
-
-Shortcut git-log nmap <Leader>gl :Glog<CR>
-Shortcut git-status nmap <Leader>gs :Gstatus<CR>
-Shortcut git-diff nmap <Leader>gd :Gdiff<CR>
-Shortcut git-browse nmap <Leader>gbr :Gbrowse<CR>
-Shortcut git-blame nmap <Leader>gbl :Gblame<CR>
-
-Shortcut bunload nmap <Leader>u :bun<CR>
-
-Shortcut escape-jk imap jk <Esc>
-Shortcut escape-kj imap kj <Esc>
-
-"sudo write current buffer:
-command Sw w !sudo tee % > /dev/null
-
-nmap ga <Plug>(place-insert)
-
-
-let g:UltiSnipsExpandTrigger="<Leader>'"
-let g:UltiSnipsJumpForwardTrigger="<Leader>'"
-let g:UltiSnipsJumpBackwardTrigger="<Leader>\""
-
-au FileType rust nnoremap <LocalLeader>rf :%!rustfmt<CR>
-au FileType rust nnoremap <LocalLeader>rr :CargoRun<CR>
-
-" avoids 'delete replaces default buffer' because 0 buffer contains 'last yank'
-Shortcut safepaste 
- \ nnoremap <Leader>p "0p  
-
-" my functions
-nnoremap <Leader>[ :call TodoPrompt()<CR>
-nnoremap <Leader>] :call TodoSplit()<CR>
-nnoremap <Leader>% :<C-u>call <SID>copy_path()<CR>
-xnoremap @ :<C-u>call ExecuteMacroOverVisualRange()<CR>
-
-nmap <silent> <C-k> <Plug>(ale_previous_wrap)
-nmap <silent> <C-j> <Plug>(ale_next_wrap)
-
-" delete all other lines. TODO protect against last line
-nmap <Leader>0 kd1Go<Esc>dG
-
-"nmap <Leader>3 kdggjdG
+autocmd CompleteDone * silent! pclose!
+inoremap <silent><CR> <C-R>=<SID>my_cr_function()<CR>
+function! s:my_cr_function()
+    if (pumvisible())
+        return deoplete#close_popup()
+    else
+        return "\<CR>"
+    endif
+endfunction

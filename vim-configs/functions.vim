@@ -8,60 +8,12 @@ function! FileOffset()
     return line2byte(line('.')) + col('.') - 1
 endfunction
 
-function! TodoPrompt()
-  let curfile = @%
-  if curfile != 'inbox.md'
-    split ~/o/inbox.md
-  endif
-  call inputsave()
-  let name = input('Enter todo: ')
-  call inputrestore()
-  " insert a new todo on second line
-  call append(1, ' - [ ] ' . name)
-  if curfile != 'inbox.md'
-    hide
+" Maximizes the current window if it is not the quickfix window.
+function MaximizeIfNotQuickfix()
+  if (getbufvar(winbufnr(winnr()), "&buftype") != "quickfix")
+    wincmd _
   endif
 endfunction
-
-function! TodoSplit()
-  if @% != 'inbox.md'
-    split ~/o/inbox.md
-    resize 5
-  endif
-  " insert a new todo on second line
-  call append(1, ' - [ ] ')
-  " go to second line
-  execute 2
-  " enter insert mode at end of line
-  call feedkeys('A')
-endfunction
-
-" todo-todos
-" Find heading
-function! TodoMoveToHeading()
-  let name = input('Move to heading: ')
-  let [lnum, col] = searchpos('^#\+ ' . name, 'n')
-  if (lnum > 0)
-    execute 'm ' . lnum
-  else
-    echo ''
-    echo 'not found'
-  endif
-endfunction
-" Refile
-" Tagging
-" 
-function! TodoM()
-  let b:lines=[]
-  while matchstr('^#\+ ', 'n')
-  add(b:lines, m)
-
-  call fzf#vim#complete(b:lines)
-endfunction
-" copy current file's path to clipboard
-function! s:copy_path()
-  let @+ = expand('%:p')
-endfunction 
 
 " https://medium.com/@garoth/neovim-terminal-usecases-tricks-8961e5ac19b9
 " Workspace Setup

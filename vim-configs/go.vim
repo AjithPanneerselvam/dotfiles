@@ -8,12 +8,9 @@ let g:go_highlight_build_constraints = 1
 let g:go_term_enabled = 1
 let g:go_list_type = "quickfix"
 let g:go_addtags_transform = "camelcase"
-
 let g:go_auto_type_info = 0
 let g:go_updatetime = 2000
 let g:go_info_mode = 'gocode'
-
-"let g:go_auto_sameids = 1 
 
 " deoplete-go setup
 let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const']
@@ -79,5 +76,3 @@ au FileType go Shortcut GoInfo nmap <LocalLeader>k :GoInfo<CR>
 au FileType go Shortcut GoIfErr nnoremap <LocalLeader>e :GoIfErr<CR>
 
 augroup END
-
-
