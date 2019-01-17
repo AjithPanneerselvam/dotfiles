@@ -47,10 +47,6 @@ Plug 'itchyny/vim-cursorword' " underline word under cursor
 
 if has('nvim')
 	Plug 'jodosha/vim-godebug'
-
-	"gonvim
-	Plug 'equalsraf/neovim-gui-shim'
-	Plug 'dzhou121/gonvim-fuzzy' 
 endif
 
 """ snippets
