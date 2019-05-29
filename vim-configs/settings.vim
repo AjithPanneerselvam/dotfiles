@@ -38,6 +38,19 @@ set clipboard+=unnamedplus
 set completeopt+=noinsert
 set completeopt-=preview
 set backspace=indent,eol,start
+set colorcolumn=80
+
+" should markdown preview get shown automatically upon opening markdown buffer
+let g:livedown_autorun = 0
+
+" should the browser window pop-up upon previewing
+let g:livedown_open = 1
+
+" the port on which Livedown server will run
+let g:livedown_port = 1337
+
+" the browser to use, can also be firefox, chrome or other, depending on your executable
+let g:livedown_browser = "chrome"
 
 "ale configs  
 let g:airline#extensions#ale#enabled = 1
@@ -49,7 +62,7 @@ let g:ale_set_quickfix = 1
 let g:ale_list_window_size = 2
 let g:ale_fix_on_save = 1
 let g:ale_open_list = 1
-let g:ale_keep_list_window_open = 1
+"let g:ale_keep_list_window_open = 1
 let g:airline_detect_paste=1 "vim-airline settings 
 
 let vimDir = '$HOME/.vim' " Put plugins and dictionaries in this dir (also on Windows)
@@ -73,6 +86,13 @@ let g:LanguageClient_serverCommands = {
 
 let g:checkbox_states = [' ', 'X'] " vim-checkbox plugin
 let g:deoplete#enable_at_startup = 1
+
+" close quickfix automatically while exiting the file 
+autocmd BufWinEnter quickfix nnoremap <silent> <buffer>
+                \   q :cclose<cr>:lclose<cr>
+autocmd BufEnter * if (winnr('$') == 1 && &buftype ==# 'quickfix' ) |
+                \   bd|
+                \   q | endif
 
 " restore cursor _except_ for commit messages
 autocmd BufReadPost * if @% !~# '\.git[\/\\]COMMIT_EDITMSG$' && line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif 
