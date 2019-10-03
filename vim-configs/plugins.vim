@@ -3,7 +3,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'Shougo/denite.nvim' " I think this is a dependency for something. Can't remember but leaving it near the top
 
 " Git support
-Plug 'tpope/vim-fugitive' " The git things
+"Plug 'tpope/vim-fugitive' " The git things
 Plug 'airblade/vim-gitgutter' " +/-/~ signs in the gutter
 
 " Themes and appearance 
@@ -37,7 +37,7 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim' " Find within files
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'pelodelfuego/vim-swoop' " replace across files typa thing
+"Plug 'pelodelfuego/vim-swoop' " replace across files typa thing
 Plug 'sunaku/vim-shortcut' "searchable key mappings
 Plug 'haya14busa/incsearch.vim'
 
@@ -50,6 +50,7 @@ if has('nvim')
 endif
 
 """ snippets
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
+"Plug 'SirVer/ultisnips'
+"Plug 'honza/vim-snippets'
+
 call plug#end()

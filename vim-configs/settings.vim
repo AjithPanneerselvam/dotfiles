@@ -39,6 +39,7 @@ set completeopt+=noinsert
 set completeopt-=preview
 set backspace=indent,eol,start
 set colorcolumn=80
+set encoding=UTF-8 
 
 " should markdown preview get shown automatically upon opening markdown buffer
 let g:livedown_autorun = 0
