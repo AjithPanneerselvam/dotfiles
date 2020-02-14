@@ -1,21 +1,28 @@
 call plug#begin('~/.vim/plugged')
 
-Plug 'Shougo/denite.nvim' " I think this is a dependency for something. Can't remember but leaving it near the top
+Plug 'Shougo/denite.nvim' 
 
 " Git support
-"Plug 'tpope/vim-fugitive' " The git things
+Plug 'tpope/vim-fugitive' " The git things
 Plug 'airblade/vim-gitgutter' " +/-/~ signs in the gutter
 
 " Themes and appearance 
-Plug 'joshdick/onedark.vim' " one-dark color scheme 
+"Plug 'joshdick/onedark.vim' " one-dark color scheme 
+"Plug 'ayu-theme/ayu-vim'
+"Plug 'rakr/vim-one'
+Plug 'arcticicestudio/nord-vim'
 
 """ Completion
-Plug 'Shougo/deoplete.nvim' , { 'do': ':UpdateRemotePlugins' }
-Plug 'roxma/vim-hug-neovim-rpc' 
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
+endif
 
 """ Go
 Plug 'fatih/vim-go', { 'tag': '*' } " , 'do': ':GoUpdateBinaries' }
-Plug 'buoto/gotests-vim'
 Plug 'zchee/deoplete-go', {'build': {'unix': 'make'}}
 
 """ Syntax & linting 
@@ -35,11 +42,14 @@ Plug 'tpope/vim-surround'          " Operate on surrounding
 """ navigation and fuzzy
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim' " Find within files
+
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
-"Plug 'pelodelfuego/vim-swoop' " replace across files typa thing
-Plug 'sunaku/vim-shortcut' "searchable key mappings
+"
+" Highlight the words being seached on the fly 
 Plug 'haya14busa/incsearch.vim'
+
+Plug 'sunaku/vim-shortcut'
 
 """ Appearance and layout
 Plug 'vim-airline/vim-airline'
@@ -48,9 +58,5 @@ Plug 'itchyny/vim-cursorword' " underline word under cursor
 if has('nvim')
 	Plug 'jodosha/vim-godebug'
 endif
-
-""" snippets
-"Plug 'SirVer/ultisnips'
-"Plug 'honza/vim-snippets'
 
 call plug#end()

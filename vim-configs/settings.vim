@@ -38,46 +38,42 @@ set clipboard+=unnamedplus
 set completeopt+=noinsert
 set completeopt-=preview
 set backspace=indent,eol,start
-set colorcolumn=80
-set encoding=UTF-8 
 
-" should markdown preview get shown automatically upon opening markdown buffer
-let g:livedown_autorun = 0
+set noswapfile
 
-" should the browser window pop-up upon previewing
-let g:livedown_open = 1
+"set colorcolumn=80
 
-" the port on which Livedown server will run
-let g:livedown_port = 1337
-
-" the browser to use, can also be firefox, chrome or other, depending on your executable
-let g:livedown_browser = "chrome"
+" vim-one theme inside tmux
+"set t_8b=^[[48;2;%lu;%lu;%lum
+"set t_8f=^[[38;2;%lu;%lu;%lum
 
 "ale configs  
 let g:airline#extensions#ale#enabled = 1
 let g:ale_lint_on_enter = 1
 let g:ale_linters = {'go': ['gobuild', 'go vet', 'golint', 'gofmt'], "python": ['flake8', 'pylint']}
 let b:ale_fixers = ['autopep8']
+
 let g:ale_set_loclist = 1
 let g:ale_set_quickfix = 1
 let g:ale_list_window_size = 2
 let g:ale_fix_on_save = 1
 let g:ale_open_list = 1
-"let g:ale_keep_list_window_open = 1
+let g:ale_list_window_size = 5
+
 let g:airline_detect_paste=1 "vim-airline settings 
 
 let vimDir = '$HOME/.vim' " Put plugins and dictionaries in this dir (also on Windows)
 let &runtimepath.=','.vimDir
-let g:airline_theme='onedark'
 
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
-"let g:UltiSnipsSnippetsDir='mysnippets'
-"let g:UltiSnipsSnippetDirectories=['~/.vimsnippets']
 
 let g:over_enable_cmd_window = 1 " vim-over
 let g:over_enable_auto_nohlsearch = 1
 let g:argwrap_tail_comma = 1
+
+let g:go_def_mapping_enabled = 0
+
 let g:LanguageClient_serverCommands = {
     \ 'json': ['json-languageserver', '--stdio'],
     \ 'sh': ['bash-language-server', 'start'],
@@ -86,6 +82,7 @@ let g:LanguageClient_serverCommands = {
     \ }
 
 let g:checkbox_states = [' ', 'X'] " vim-checkbox plugin
+
 let g:deoplete#enable_at_startup = 1
 
 " close quickfix automatically while exiting the file 

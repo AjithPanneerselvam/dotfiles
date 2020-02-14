@@ -1,5 +1,5 @@
 " Leader
-let mapleader=";"
+let mapleader= ","
 let maplocalleader=","
 
 let g:fzf_action = {
@@ -8,6 +8,7 @@ let g:fzf_action = {
   \ 'ctrl-v': 'vsplit' }
 
 let g:fzf_layout = { 'down': '~40%'}
+
 
 """ fzf key mappings
 nnoremap <silent> ff :Files <CR> 
@@ -33,6 +34,8 @@ nnoremap <silent> nt :NERDTree <CR>
 nnoremap <silent> ls :call LanguageClient_contextMenu()<CR>
 nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
 nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
+nnoremap <silent> gh :call LanguageClient_textDocument_hover()<CR>
+nnoremap <silent> fr :call LanguageClient_textDocument_references()<CR>
 nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
 
 if has('nvim')
