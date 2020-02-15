@@ -1,6 +1,6 @@
 call plug#begin('~/.vim/plugged')
 
-Plug 'Shougo/denite.nvim' 
+"Plug 'Shougo/denite.nvim' 
 
 " Git support
 Plug 'tpope/vim-fugitive' " The git things
@@ -13,20 +13,22 @@ Plug 'airblade/vim-gitgutter' " +/-/~ signs in the gutter
 Plug 'arcticicestudio/nord-vim'
 
 """ Completion
-if has('nvim')
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-else
-  Plug 'Shougo/deoplete.nvim'
-  Plug 'roxma/nvim-yarp'
-  Plug 'roxma/vim-hug-neovim-rpc'
-endif
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+"if has('nvim')
+"  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+"else
+"  Plug 'Shougo/deoplete.nvim'
+"  Plug 'roxma/nvim-yarp'   
+"  Plug 'roxma/vim-hug-neovim-rpc'
+" endif
 
 """ Go
 Plug 'fatih/vim-go', { 'tag': '*' } " , 'do': ':GoUpdateBinaries' }
-Plug 'zchee/deoplete-go', {'build': {'unix': 'make'}}
+"Plug 'zchee/deoplete-go', {'build': {'unix': 'make'}}
 
 """ Syntax & linting 
-Plug 'w0rp/ale' 
+" Plug 'w0rp/ale' 
 
 Plug 'autozimu/LanguageClient-neovim', {
     \ 'branch': 'next',
@@ -54,9 +56,5 @@ Plug 'sunaku/vim-shortcut'
 """ Appearance and layout
 Plug 'vim-airline/vim-airline'
 Plug 'itchyny/vim-cursorword' " underline word under cursor
-
-if has('nvim')
-	Plug 'jodosha/vim-godebug'
-endif
 
 call plug#end()

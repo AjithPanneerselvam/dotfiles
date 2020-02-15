@@ -17,10 +17,13 @@ nnoremap <silent> fgs :GFiles? <CR>
 nnoremap <silent> fl :Lines <CR>
 nnoremap <silent> fm :Marks <CR> 
 nnoremap <silent> flp :Locate \ <CR>
-nnoremap <silent> fag :Ag <CR>
+"nnoremap <silent> fag :Ag <CR>
 nnoremap <silent> fgc :Commits <CR> 
 nnoremap <silent> fcm :Commands <CR> 
 nnoremap <silent> fmp :Maps <CR> 
+
+""" ripgrep 
+nnoremap <silent> rg :Rg <CR>
 
 """ incsearch
 map /  <Plug>(incsearch-forward)
@@ -50,12 +53,12 @@ endif
 " Remap ,m to make and open error window if there are any errors. If there weren't any errors, the current window is maximized.
 map <silent> ,m :mak<CR><CR>:cw<CR>:call MaximizeIfNotQuickfix()<CR>
 
-autocmd CompleteDone * silent! pclose!
-inoremap <silent><CR> <C-R>=<SID>my_cr_function()<CR>
-function! s:my_cr_function()
-    if (pumvisible())
-        return deoplete#close_popup()
-    else
-        return "\<CR>"
-    endif
-endfunction
+"autocmd CompleteDone * silent! pclose!
+"inoremap <silent><CR> <C-R>=<SID>my_cr_function()<CR>
+"function! s:my_cr_function()
+"    if (pumvisible())
+"        return deoplete#close_popup()
+"    else
+ "       return "\<CR>"
+  "  endif
+"endfunction
