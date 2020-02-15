@@ -1,4 +1,5 @@
 {
+"coc.preferences.noselect": false,
 "languageserver": {
     "golang": {
       "command": "go-langserver",
