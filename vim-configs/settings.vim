@@ -81,7 +81,7 @@ let g:LanguageClient_serverCommands = {
     \ 'json': ['json-languageserver', '--stdio'],
     \ 'sh': ['bash-language-server', 'start'],
     \ 'yaml': ['yaml-language-server'],
-    \ 'go': ['go-langserver'],
+    \ 'go': ['gopls'],
     \ }
 
 let g:checkbox_states = [' ', 'X'] " vim-checkbox plugin

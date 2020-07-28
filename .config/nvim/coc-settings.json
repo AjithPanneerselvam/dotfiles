@@ -2,7 +2,7 @@
 "coc.preferences.noselect": false,
 "languageserver": {
     "golang": {
-      "command": "go-langserver",
+      "command": "gopls",
       "filetypes": ["go"],
       "initializationOptions": {
         "gocodeCompletionEnabled": true,

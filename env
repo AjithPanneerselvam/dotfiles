@@ -1,0 +1,9 @@
+GO_PATH=/Users/ajith/go
+
+GITHUB_USERNAME="AjithPanneerselvam"
+GITHUB_EMAIL_ID="ajithpanneerselvam20@gmail.com"
+GIT_EDITOR="vim"
+
+GO_VERSION=1.14.6
+GO_OS=darwin
+GO_ARCH=amd64
