@@ -114,22 +114,22 @@ echo '\nConfiguring Git and Github'
 config_git
 
 echo '\nbrew installs'
-#brew_installs
+brew_installs
 
 echo '\nConfiguring vim'
-#config_vim
+config_vim
 
 echo '\nInstalling languages'
-#install_langs 
+install_langs 
 
 echo '\nGo Setup'
-#setup_go
+setup_go
 
 echo '\nConfiguring zsh'
-#config_zsh
+config_zsh
 
 echo '\nConfiguring tmux'
-#config_tmux
+config_tmux
 
 echo '\nCleaning setup'
-#clean_setup
+clean_setup
