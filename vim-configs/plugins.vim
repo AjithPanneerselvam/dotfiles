@@ -8,20 +8,12 @@ Plug 'airblade/vim-gitgutter' " +/-/~ signs in the gutter
 
 " Themes and appearance 
 "Plug 'joshdick/onedark.vim' " one-dark color scheme 
-"Plug 'ayu-theme/ayu-vim'
-"Plug 'rakr/vim-one'
 Plug 'arcticicestudio/nord-vim'
+Plug 'chuling/ci_dark'
+Plug 'luochen1990/rainbo'
 
 """ Completion
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-
-"if has('nvim')
-"  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-"else
-"  Plug 'Shougo/deoplete.nvim'
-"  Plug 'roxma/nvim-yarp'   
-"  Plug 'roxma/vim-hug-neovim-rpc'
-" endif
 
 """ Go
 Plug 'fatih/vim-go', { 'tag': '*' } " , 'do': ':GoUpdateBinaries' }

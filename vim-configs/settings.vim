@@ -50,19 +50,6 @@ set updatetime=300
 
 "set colorcolumn=80
 
-"ale configs  
-" let g:airline#extensions#ale#enabled = 1
-"let g:ale_lint_on_enter = 1
-"let g:ale_linters = {'go': ['gobuild', 'go vet', 'golint', 'gofmt'], "python": ['flake8', 'pylint']}
-"let b:ale_fixers = ['autopep8']
-
-"let g:ale_set_loclist = 1
-"let g:ale_set_quickfix = 1
-"let g:ale_list_window_size = 2
-"let g:ale_fix_on_save = 1
-"let g:ale_open_list = 1
-"let g:ale_list_window_size = 5
-
 let g:airline_detect_paste=1 "vim-airline settings 
 
 let vimDir = '$HOME/.vim' " Put plugins and dictionaries in this dir (also on Windows)
