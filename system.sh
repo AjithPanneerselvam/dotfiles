@@ -59,6 +59,7 @@ install_langs() {
     sudo wget -c https://golang.org/dl/$GO_TAR
     echo '\nUnarchiving go'
     sh -c "sudo tar -C /usr/local -xzf $GO_TAR"
+    rm $GO_TAR
 }
 
 setup_go() {
