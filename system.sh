@@ -29,6 +29,10 @@ brew_installs() {
 
     echo '\nInstalling tmux'
     brew install tmux
+    
+    echo '\nInstall firacode font'
+    brew tap homebrew/cask-fonts
+    brew cask install font-fira-code
 }
 
 config_vim() {
