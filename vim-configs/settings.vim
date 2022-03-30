@@ -77,7 +77,6 @@ let g:checkbox_states = [' ', 'X'] " vim-checkbox plugin
 " coc.nvim corrent comment highlighting 
 autocmd FileType json syntax match Comment +\/\/.\+$+
 
-"let g:deoplete#enable_at_startup = 1
 
 " close quickfix automatically while exiting the file 
 autocmd BufWinEnter quickfix nnoremap <silent> <buffer>
