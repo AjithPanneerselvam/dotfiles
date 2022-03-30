@@ -52,13 +52,3 @@ endif
 
 " Remap ,m to make and open error window if there are any errors. If there weren't any errors, the current window is maximized.
 map <silent> ,m :mak<CR><CR>:cw<CR>:call MaximizeIfNotQuickfix()<CR>
-
-"autocmd CompleteDone * silent! pclose!
-"inoremap <silent><CR> <C-R>=<SID>my_cr_function()<CR>
-"function! s:my_cr_function()
-"    if (pumvisible())
-"        return deoplete#close_popup()
-"    else
- "       return "\<CR>"
-  "  endif
-"endfunction

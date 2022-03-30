@@ -48,7 +48,7 @@ set noswapfile "swap files are annoying
 " recommended to set updatetime in the documentation
 set updatetime=300
 
-"set colorcolumn=80
+set colorcolumn=80
 
 let g:airline_detect_paste=1 "vim-airline settings 
 
@@ -69,6 +69,7 @@ let g:LanguageClient_serverCommands = {
     \ 'sh': ['bash-language-server', 'start'],
     \ 'yaml': ['yaml-language-server'],
     \ 'go': ['gopls'],
+    \ 'rust': ['rust-analyzer'],
     \ }
 
 let g:checkbox_states = [' ', 'X'] " vim-checkbox plugin
