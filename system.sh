@@ -29,6 +29,10 @@ brew_installs() {
 
     echo '\nInstalling tmux'
     brew install tmux
+    
+    echo '\nInstall firacode font'
+    brew tap homebrew/cask-fonts
+    brew cask install font-fira-code
 }
 
 config_vim() {
@@ -59,6 +63,7 @@ install_langs() {
     sudo wget -c https://golang.org/dl/$GO_TAR
     echo '\nUnarchiving go'
     sh -c "sudo tar -C /usr/local -xzf $GO_TAR"
+    rm $GO_TAR
 }
 
 setup_go() {
